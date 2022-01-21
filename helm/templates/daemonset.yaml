@@ -14,15 +14,15 @@ spec:
       labels:
         app: s3-mounter
     spec:
-      {{- if .Values.serviceAccount.create -}}
+      {{ if .Values.serviceAccount.create }}
       serviceAccountName: s3-mounter
       {{- else -}}
-      serviceAccountName: {{ .Values.serviceAccountName }}
-      {{- end -}}
+      serviceAccountName: {{ .Values.serviceAccount.name }}
+      {{- end }}
       containers:
       - name: mounter 
         image: otomato/goofys
-        command: ["./goofys", "-f", "${S3_BUCKET}", "${MOUNT_PATH}"]
+        command: ["./goofys", "-f", "{{ .Values.bucketName }}", "{{ .Values.mountPath }}"]
         securityContext:
           privileged: true
         volumeMounts:
