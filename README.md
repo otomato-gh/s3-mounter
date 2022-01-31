@@ -4,5 +4,4 @@
 
 This repo hosts the Dockerfile and the Helm chart for Otomato S3 mounter (Otomounter) for kubernetes based on [goofys](https://github.com/kahing/goofys)
 
-The full blog post on how to use this in your own EKS cluster can be found here: https://dev.to/otomato_io/mount-s3-objects-to-kubernetes-pod
-
+The full blog post on how to use this in your own EKS cluster can be found here: https://dev.to/otomato_io/mount-s3-objects-to-kubernetes-pods-12f5
