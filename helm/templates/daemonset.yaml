@@ -7,20 +7,16 @@ metadata:
   namespace: {{ .Release.Namespace }}
 spec:
   selector:
-    matchLabels: 
+    matchLabels:
       app: s3-mounter
   template:
     metadata:
       labels:
         app: s3-mounter
     spec:
-      {{ if .Values.serviceAccount.create }}
-      serviceAccountName: s3-mounter
-      {{- else -}}
-      serviceAccountName: {{ .Values.serviceAccount.name }}
-      {{- end }}
+      serviceAccountName: {{ include "helm.serviceAccountName" . }}
       containers:
-      - name: mounter 
+      - name: mounter
         image: otomato/goofys
         command: ["./goofys", "-f", "{{ .Values.bucketName }}", "{{ .Values.mountPath }}"]
         securityContext:
