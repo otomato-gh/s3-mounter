@@ -18,4 +18,10 @@ bucketName: my-bucket
 iamRoleARN: my-role
 mountPath: /var/s3
 hostPath: /mnt/s3data
-
+# This is a variable to customize the command and manage option
+commandOption: 
+  - ./goofys
+  - -f 
+  - $(S3_BUCKET)
+  - $(MOUNT_PATH)
+  

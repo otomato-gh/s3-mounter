@@ -21,8 +21,11 @@ spec:
       {{- end }}
       containers:
       - name: mounter 
-        image: otomato/goofys
-        command: ["./goofys", "-f", "{{ .Values.bucketName }}", "{{ .Values.mountPath }}"]
+        image: otomato/goofys        
+        command:
+          {{- range .Values.commandOption }}
+          - {{ . | quote }}
+          {{- end }} 
         securityContext:
           privileged: true
         volumeMounts:
